@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="src\Parsers\" />
+    <Folder Include="uploads\docx\" />
+    <Folder Include="uploads\ppt\" />
+    <Folder Include="uploads\pdf\" />
+  </ItemGroup>
+
+</Project>
