@@ -1,0 +1,12 @@
+C:\Users\Visitor\Desktop\SearchEngine\bin\Debug\net5.0\SearchEngine.deps.json
+C:\Users\Visitor\Desktop\SearchEngine\bin\Debug\net5.0\SearchEngine.dll
+C:\Users\Visitor\Desktop\SearchEngine\bin\Debug\net5.0\ref\SearchEngine.dll
+C:\Users\Visitor\Desktop\SearchEngine\bin\Debug\net5.0\SearchEngine.pdb
+C:\Users\Visitor\Desktop\SearchEngine\obj\Debug\net5.0\SearchEngine.csproj.AssemblyReference.cache
+C:\Users\Visitor\Desktop\SearchEngine\obj\Debug\net5.0\SearchEngine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Visitor\Desktop\SearchEngine\obj\Debug\net5.0\SearchEngine.AssemblyInfoInputs.cache
+C:\Users\Visitor\Desktop\SearchEngine\obj\Debug\net5.0\SearchEngine.AssemblyInfo.cs
+C:\Users\Visitor\Desktop\SearchEngine\obj\Debug\net5.0\SearchEngine.csproj.CoreCompileInputs.cache
+C:\Users\Visitor\Desktop\SearchEngine\obj\Debug\net5.0\SearchEngine.dll
+C:\Users\Visitor\Desktop\SearchEngine\obj\Debug\net5.0\ref\SearchEngine.dll
+C:\Users\Visitor\Desktop\SearchEngine\obj\Debug\net5.0\SearchEngine.pdb
