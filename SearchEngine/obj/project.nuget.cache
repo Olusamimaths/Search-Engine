@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "SyVVoW63nG6YKc2gq8a6LQWoRRBP1zkVZZN4+cpSf/EmuMPiPXIy7XmHtNj+1vLUTLbv7pghjbVfCf9YV92/IQ==",
+  "dgSpecHash": "V3M5W4soNaBhq3OFXR5NX7RGP+bvqH/cYAj2+Vpj9V68AkaR0Kzf3FRR2NXDj/PBY1vvn0q2teYMURVteMdGIA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Visitor\\Desktop\\Project\\SearchEngine\\SearchEngine.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Visitor\\.nuget\\packages\\pdfpig\\0.1.4\\pdfpig.0.1.4.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,12 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UglyToad.PdfPig;
+using UglyToad.PdfPig.Content;
 
 namespace Parsers
 {
-    class PDFParser
+    public static class PDFParser
     {
+        public static string Parse(string pdfPath)
+        {
+            string text = "";
+            using(var pdf = PdfDocument.Open(@pdfPath))
+            {
+                foreach(var page in pdf.GetPages())
+                {
+                    text += " " + page.Text;
+                }
+            }
+            return text;
+        }
     }
 }

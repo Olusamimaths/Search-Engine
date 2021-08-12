@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="src\Parsers\" />
     <Folder Include="uploads\docx\" />
     <Folder Include="uploads\ppt\" />
     <Folder Include="uploads\pdf\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PdfPig" Version="0.1.4" />
   </ItemGroup>
 
 </Project>
