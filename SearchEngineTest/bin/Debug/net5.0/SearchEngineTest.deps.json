@@ -419,6 +419,38 @@
           }
         }
       },
+      "PdfPig/0.1.4": {
+        "runtime": {
+          "lib/netstandard2.0/UglyToad.PdfPig.Core.dll": {
+            "assemblyVersion": "0.1.4.0",
+            "fileVersion": "0.1.4.0"
+          },
+          "lib/netstandard2.0/UglyToad.PdfPig.DocumentLayoutAnalysis.dll": {
+            "assemblyVersion": "0.1.4.0",
+            "fileVersion": "0.1.4.0"
+          },
+          "lib/netstandard2.0/UglyToad.PdfPig.Fonts.dll": {
+            "assemblyVersion": "0.1.4.0",
+            "fileVersion": "0.1.4.0"
+          },
+          "lib/netstandard2.0/UglyToad.PdfPig.Package.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
+          },
+          "lib/netstandard2.0/UglyToad.PdfPig.Tokenization.dll": {
+            "assemblyVersion": "0.1.4.0",
+            "fileVersion": "0.1.4.0"
+          },
+          "lib/netstandard2.0/UglyToad.PdfPig.Tokens.dll": {
+            "assemblyVersion": "0.1.4.0",
+            "fileVersion": "0.1.4.0"
+          },
+          "lib/netstandard2.0/UglyToad.PdfPig.dll": {
+            "assemblyVersion": "0.1.4.0",
+            "fileVersion": "0.1.4.0"
+          }
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
@@ -1078,6 +1110,9 @@
         }
       },
       "SearchEngine/1.0.0": {
+        "dependencies": {
+          "PdfPig": "0.1.4"
+        },
         "runtime": {
           "SearchEngine.dll": {}
         }
@@ -1187,6 +1222,13 @@
       "sha512": "sha512-c5JVjuVAm4f7E9Vj+v09Z9s2ZsqFDjBpcsyS3M9xRo0bEdm/LVZSzLxxNvfvAwRiiE8nwe1h2G4OwiwlzFKXlA==",
       "path": "nuget.frameworks/5.0.0",
       "hashPath": "nuget.frameworks.5.0.0.nupkg.sha512"
+    },
+    "PdfPig/0.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iqFmvlXBd8gz3NZEwzLJSMF2lss2/yUtYZBOEttGdBSfTmaz+pvzhA2hbit1up6QPFrZbZR8MTxIh98WF+l2uw==",
+      "path": "pdfpig/0.1.4",
+      "hashPath": "pdfpig.0.1.4.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",
