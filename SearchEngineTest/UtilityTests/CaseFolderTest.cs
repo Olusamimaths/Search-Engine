@@ -10,6 +10,7 @@ namespace SearchEngineTest
         [TestMethod]
         public void FoldAllCasesToLower()
         {
+            string text = "THIS IS CAPITAL";
             Assert.AreEqual(CaseFolder.CaseFold(text), text.ToLower());
         }
     }

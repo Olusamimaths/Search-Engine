@@ -13,11 +13,11 @@ namespace ConsoleAppTester
             //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
 
-            Console.WriteLine(pdfFilePath);
+           /* Console.WriteLine(pdfFilePath);
             string text = PDFParser.Parse(pdfFilePath);
-            Console.WriteLine(text);
+            Console.WriteLine(text);*/
 
-            string word = "THIS IS CAPITAL";
+            string word = "THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL";
             Console.WriteLine(CaseFolder.CaseFold(word));
           
             //Console.WriteLine(pdfFilePath);
@@ -32,9 +32,9 @@ namespace ConsoleAppTester
             //string result = DOCParser.parseDoc(path);
             //Console.WriteLine(result);\
 
-            string path = @"C:/Users/Simeon/Desktop/textppt.pptx";
+            /*string path = @"C:/Users/Simeon/Desktop/textppt.pptx";
             string result = PPTParser.parsePPT(path);
-            Console.WriteLine(result);
+            Console.WriteLine(result);*/
         }
     }
 }
