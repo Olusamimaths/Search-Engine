@@ -14,6 +14,8 @@ namespace ConsoleAppTester
             Console.WriteLine(pdfFilePath);
             string text = PDFParser.Parse(pdfFilePath);
             Console.WriteLine(text);
+
+            string 
         }
     }
 }
