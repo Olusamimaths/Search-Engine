@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Utilities;
 using System;
 using System.IO;
 using Parsers;
