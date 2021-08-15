@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Parsers;
+using Utilities;
 
 namespace ConsoleAppTester
 {
@@ -15,7 +16,8 @@ namespace ConsoleAppTester
             string text = PDFParser.Parse(pdfFilePath);
             Console.WriteLine(text);
 
-            string 
+            string word = "THIS IS CAPITAL";
+            Console.WriteLine(CaseFolder.CaseFold(word));
         }
     }
 }
