@@ -9,10 +9,10 @@ namespace ConsoleAppTester
         static void Main(string[] args)
         {
             string folderName = AppDomain.CurrentDomain.BaseDirectory;
-            string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+            string filePath = Path.Combine(folderName, "..\\..\\..\\testDocx1.docx");
 
-            Console.WriteLine(pdfFilePath);
-            string text = PDFParser.Parse(pdfFilePath);
+            Console.WriteLine(filePath);
+            string text = DocParser.Parse(filePath);
             Console.WriteLine(text);
         }
     }
