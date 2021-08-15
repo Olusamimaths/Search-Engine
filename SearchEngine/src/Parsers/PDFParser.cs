@@ -20,15 +20,25 @@ namespace Parsers
             // initial text
             string text = "";
             try {
-                using (var pdf = PdfDocument.Open(@pdfPath))
+                text = GetTextFromPdf(pdfPath);
+            } catch(SystemException ex) {
+                Logger.Info(ErrorMessages.ErrorOccurred);
+                Logger.Error(ex.Message);
+            }
+
+            return text;
+        }
+
+        private static string GetTextFromPdf(string pdfPath)
+        {
+            string text = "";
+
+            using (var pdf = PdfDocument.Open(@pdfPath))
+            {
+                foreach (var page in pdf.GetPages())
                 {
-                    foreach (var page in pdf.GetPages())
-                    {
-                        text += " " + page.Text;
-                    }
+                    text += " " + page.Text;
                 }
-            } catch(System.InvalidOperationException) {
-                Logger.Error(ErrorMessages.FileNotFound);
             }
 
             return text.Trim();
