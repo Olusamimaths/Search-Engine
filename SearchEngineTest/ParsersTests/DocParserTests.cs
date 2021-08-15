@@ -12,9 +12,9 @@ namespace SearchEngineTest
         public void ParsesTextFromADocxFile()
         {
             string folderName = AppDomain.CurrentDomain.BaseDirectory;
-            string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\ParsersTests\\testDocx1.docx");
+            string docFilePath = Path.Combine(folderName, "..\\..\\..\\ParsersTests\\testDocx1.docx");
 
-            string text = PDFParser.Parse(@pdfFilePath);
+            string text = PDFParser.Parse(@docFilePath);
             Assert.AreEqual(text, "This is a docx file, yay! It is.");
         }
     }
