@@ -13,18 +13,28 @@ namespace DoocumentUploadTest
         [TestMethod]
         public void DocTypeUploadTest()
         {
-            string typecheck = ".pdf";
+
+            string value = @"C:\Users\Public\template1.doc";
+            FileInfo fi = new FileInfo(value);
+            string extn = fi.Extension;
             string[] typeArray = { ".pdf", ".doc", ".docx", ".ppt", ".ppts", ".xls", ".xlsx", ".txt", ".html", ".xml" };
-            Assert.AreEqual(typecheck, typeArray.Any(typecheck.Contains));
+            if (typeArray.Any(extn.Contains))
+            {
+                Assert.AreEqual(extn,".doc" );
+            }
+            
+
         }
         [TestMethod]
         public void DocUploadTest()
         {
 
-            string value = @"C:\Users\Public\template1.doc";
-            string[] filePaths = Directory.GetFiles(@"c:\MyDir\", "*.pdf", SearchOption.AllDirectories);
-            Assert.AreEqual(value, filePaths.Any(filePaths.Contains));
-
+            string value = @"C:\Users\Abubakar O A\Desktop\2nd Semester\CSC 322 c - sharp\Project\SearchEngine\uploads\doc\template.doc";
+            string[] filePaths = Directory.GetFiles(@"C:\Users\Abubakar O A\Desktop\2nd Semester\CSC 322 c-sharp\Project\SearchEngine\uploads\", "*.doc", SearchOption.AllDirectories);
+            if (filePaths.Any(filePaths.Contains))
+            {
+                Assert.AreEqual(value, @"\template.doc");
+            }
         }
     }
 }
