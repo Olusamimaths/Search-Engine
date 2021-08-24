@@ -15,7 +15,7 @@ namespace Utilities
         /// <returns>String: The word converted to lower case</returns>
         public static string CaseFold(string word)
         {
-            return word.ToLower();
+            return word.ToLowerInvariant();
         }
     }
 }
