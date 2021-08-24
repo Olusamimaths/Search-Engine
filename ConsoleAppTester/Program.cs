@@ -29,9 +29,10 @@ namespace ConsoleAppTester
             //string result = PPTParser.parsePPT(path);
             //Console.WriteLine(result);
 
-            UploadType.Upload();
-
-
+            string path = @"C:/Users/Simeon/Desktop/the.xls";
+            string result = SpreadSheetParser.parse(path);
+            Console.WriteLine(result);
+            
         }
     }
 }
