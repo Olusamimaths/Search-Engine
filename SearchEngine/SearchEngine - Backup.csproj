@@ -6,18 +6,11 @@
 
   <ItemGroup>
     <Folder Include="uploads\docx\" />
-    <Folder Include="uploads\html\" />
-    <Folder Include="uploads\xml\" />
-    <Folder Include="uploads\xlsx\" />
-    <Folder Include="uploads\xls\" />
-    <Folder Include="uploads\txt\" />
-    <Folder Include="uploads\ppts\" />
     <Folder Include="uploads\ppt\" />
     <Folder Include="uploads\pdf\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Antlr" Version="3.5.0.2" />
     <PackageReference Include="CsQuery" Version="1.3.4" />
     <PackageReference Include="FreeSpire.Presentation" Version="4.11.0" />
     <PackageReference Include="FreeSpire.Doc" Version="7.11.0" />
