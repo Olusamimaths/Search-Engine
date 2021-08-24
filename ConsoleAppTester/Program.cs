@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 using Parsers;
+using Utilities;
+using System.Collections.Generic;
 using SearchEngine;
 using SearchEngine.src.Uploader;
 using System.Diagnostics;
-
 
 namespace ConsoleAppTester
 {
@@ -15,6 +16,14 @@ namespace ConsoleAppTester
             //string folderName = AppDomain.CurrentDomain.BaseDirectory;
             //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
+
+            /* Console.WriteLine(pdfFilePath);
+             string text = PDFParser.Parse(pdfFilePath);
+             Console.WriteLine(text);*/
+            string word = "THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL";
+            Console.WriteLine(CaseFolder.CaseFold(word));
+            Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
+          
             //Console.WriteLine(pdfFilePath);
             //string text = PDFParser.Parse(pdfFilePath);
             //Console.WriteLine(text);
@@ -46,7 +55,6 @@ namespace ConsoleAppTester
                 }
                 //CollectionAssert.AreEqual(expected, result);
             }
-
         }
     }
 }
