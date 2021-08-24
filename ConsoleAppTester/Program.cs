@@ -33,9 +33,6 @@ namespace ConsoleAppTester
             //string result = DOCParser.parseDoc(path);
             //Console.WriteLine(result);\
 
-            /*string path = @"C:/Users/Simeon/Desktop/textppt.pptx";
-            string result = PPTParser.parsePPT(path);
-            Console.WriteLine(result);*/
         }
     }
 }
