@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using Parsers;
+using SearchEngine.src.Uploader;
+using System.Diagnostics;
 
 namespace ConsoleAppTester
 {
