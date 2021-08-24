@@ -3,6 +3,9 @@ using System.IO;
 using Parsers;
 using Utilities;
 using System.Collections.Generic;
+using SearchEngine;
+using SearchEngine.src.Uploader;
+using System.Diagnostics;
 
 namespace ConsoleAppTester
 {
@@ -33,6 +36,25 @@ namespace ConsoleAppTester
             //string result = DOCParser.parseDoc(path);
             //Console.WriteLine(result);\
 
+            //string path = @"C:/Users/Simeon/Desktop/textppt.pptx";
+            //string result = PPTParser.parsePPT(path);
+            //Console.WriteLine(result);
+
+            //string path = @"C:/Users/Simeon/Desktop/the.xls";
+            //string result = SpreadSheetParser.parse(path);
+            //Console.WriteLine(result);
+
+            string input = "job open. that . . . 'word'";
+            var expected = new[] { "job", "open", "that", "word" };
+            using (var reader = new StringReader(input))
+            {
+                var tokenSource = new Tokenizer();
+                tokenSource.SetReader(reader);
+                while (tokenSource.Next()) {
+                    Console.WriteLine(tokenSource.ToString());
+                }
+                //CollectionAssert.AreEqual(expected, result);
+            }
         }
     }
 }
