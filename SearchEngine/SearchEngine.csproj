@@ -6,6 +6,12 @@
 
   <ItemGroup>
     <Folder Include="uploads\docx\" />
+    <Folder Include="uploads\html\" />
+    <Folder Include="uploads\xml\" />
+    <Folder Include="uploads\xlsx\" />
+    <Folder Include="uploads\xls\" />
+    <Folder Include="uploads\txt\" />
+    <Folder Include="uploads\ppts\" />
     <Folder Include="uploads\ppt\" />
     <Folder Include="uploads\pdf\" />
   </ItemGroup>

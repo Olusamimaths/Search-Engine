@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using Parsers;
+using SearchEngine.src.Uploader;
+using System.Diagnostics;
 
 namespace ConsoleAppTester
 {
@@ -23,9 +25,13 @@ namespace ConsoleAppTester
             //string result = DOCParser.parseDoc(path);
             //Console.WriteLine(result);\
 
-            string path = @"C:/Users/Simeon/Desktop/textppt.pptx";
-            string result = PPTParser.parsePPT(path);
-            Console.WriteLine(result);
+            //string path = @"C:/Users/Simeon/Desktop/textppt.pptx";
+            //string result = PPTParser.parsePPT(path);
+            //Console.WriteLine(result);
+
+            UploadType.Upload();
+
+
         }
     }
 }
