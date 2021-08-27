@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using SearchEngine;
 using SearchEngine.src.Uploader;
 using System.Diagnostics;
+using Database;
 
 namespace ConsoleAppTester
 {
@@ -55,6 +56,9 @@ namespace ConsoleAppTester
                 }
                 //CollectionAssert.AreEqual(expected, result);
             }
+
+            MongoDBHandler
+                .Connect("mongodb+srv://pacesetter:pacesetter@cluster0.whodz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority?connect=replicaSet");
         }
     }
 }

@@ -12,6 +12,7 @@ namespace SearchEngineTest
         public void ParsesTextFromAPDFFile()
         {
             string folderName = AppDomain.CurrentDomain.BaseDirectory;
+            Console.WriteLine("Base Folder Path" + folderName);
             string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\ParsersTests\\testPdf1.pdf");
             
             string text = PDFParser.Parse(pdfFilePath);

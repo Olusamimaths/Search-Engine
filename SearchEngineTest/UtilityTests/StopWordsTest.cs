@@ -18,12 +18,12 @@ namespace SearchEngineTest
             Assert.AreEqual(result_text, StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, text));
         }
 
-        [TestMethod]
-        public void CheckStripTextTest()
-        {
-            string text = "THIS,... IS CAPITAL... , singerafamlm;, capital, lower...";
-            string result_text =;
-        }
+        //[TestMethod]
+        //public void CheckStripTextTest()
+        //{
+        //    string text = "THIS,... IS CAPITAL... , singerafamlm;, capital, lower...";
+        //    string result_text = ;
+        //}
 
     }
 }
