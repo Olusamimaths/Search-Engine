@@ -1,11 +1,7 @@
-using System;
+﻿using System;
 using System.IO;
 using Parsers;
 using Utilities;
-using System.Collections.Generic;
-using SearchEngine;
-using SearchEngine.src.Uploader;
-using System.Diagnostics;
 
 namespace ConsoleAppTester
 {
