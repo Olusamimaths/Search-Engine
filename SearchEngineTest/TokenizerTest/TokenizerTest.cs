@@ -11,8 +11,8 @@ namespace SearchEngineTest
         [TestMethod]
         public void TokenizationWorks()
         {
-            string input = "job open. that, word";
-            var expected = new [] { "job", "open", "that", "word" };
+            string input = "job open. that, word's";
+            var expected = new [] { "job", "open", "word" };
             using (var reader = new StringReader(input))
             {
                 var tokenSource = new Tokenizer();

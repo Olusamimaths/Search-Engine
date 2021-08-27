@@ -12,6 +12,15 @@ namespace SearchEngine
 		private bool _quoted;
 		private TextReader _reader;
 
+		private static readonly string[] DefaultStopWords =
+		{
+			"a", "an", "and", "are", "as", "at", "be", "but", "by", "for",
+			"if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the",
+			"their", "then", "there", "these", "they", "this", "to", "was", "will", "with"
+		};
+
+		private readonly HashSet<string> _stopWords = new HashSet<string>(DefaultStopWords);
+
 		public Tokenizer(int maxBufferSize = 256)
 		{
 			Buffer = new char[maxBufferSize];
@@ -115,18 +124,35 @@ namespace SearchEngine
 						continue;
 				}
 
+				if (ch == '.' || ch == '\'') {
+					return true;
+				}
+
 				AppendToBuffer(ch);
 				if (BufferFull)
 					return true;
 			}
 		}
 
-		public IEnumerable<string> ReadAll()
+		/// <summary>
+		/// Iterates through given input and extract valid tokens
+		/// </summary>
+		/// <returns>List: List of valid words called terms that can be indexed</returns>
+		public List<string> ReadAll()
 		{
+			List<string> result = new List<string>();
+
 			while (Next())
-			{
-				yield return ToString();
-			}
+            {
+                string _next = new string(Buffer, 0, Size);
+				//Skip stop words
+				if (_stopWords.Contains(_next.ToLower()) || _next.Length < 2)
+                {
+                   continue;
+                }
+                result.Add(ToString());
+            }
+            return result;
 		}
 
 
@@ -137,7 +163,7 @@ namespace SearchEngine
 
 		public override string ToString()
 		{
-			return new string(Buffer, 0, Size);
-		}
+			return new string(Buffer, 0, Size).ToLower();
+        }
 	}
 }
