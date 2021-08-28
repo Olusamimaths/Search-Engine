@@ -22,7 +22,7 @@ namespace SearchEngineTest
         public void CheckStripTextTest()
         {
             string text = "THIS,... IS CAPITAL... , singerafamlm;, capital, lower...";
-            string result_text =;
+            //string result_text = ;
         }
 
     }
