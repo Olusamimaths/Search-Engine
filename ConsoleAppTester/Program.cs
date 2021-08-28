@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Parsers;
+using SearchEngine;
 using Utilities;
 using Indexing;
 
@@ -17,16 +18,12 @@ namespace ConsoleAppTester
 
              Console.WriteLine(pdfFilePath);
              string text = PDFParser.Parse(pdfFilePath);
+
              Console.WriteLine(text);
-
-            //    var tokenSource = new Tokenizer();
-            //    tokenSource.SetReader(reader);
-            //    while (tokenSource.Next()) {
-            //        Console.WriteLine(tokenSource.ToString());
-
-            //string word = "THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL";
-            //Console.WriteLine(CaseFolder.CaseFold(word));
-            //Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
+            string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
+            Console.WriteLine(CaseFolder.CaseFold(word));
+            Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
+          
 
             //Console.WriteLine(pdfFilePath);
             //string text = PDFParser.Parse(pdfFilePath);
@@ -48,17 +45,18 @@ namespace ConsoleAppTester
             //string result = SpreadSheetParser.parse(path);
             //Console.WriteLine(result);
 
-            //string input = "job open. that . . . 'word'";
-            //var expected = new[] { "job", "open", "that", "word" };
-            //using (var reader = new StringReader(input))
-            //{
-            //    var tokenSource = new Tokenizer();
-            //    tokenSource.SetReader(reader);
-            //    while (tokenSource.Next()) {
-            //        Console.WriteLine(tokenSource.ToString());
-            //    }
-            //    //CollectionAssert.AreEqual(expected, result);
-
+            string input = "The Job open. that . . . 'word's";
+            var expected = new[] { "job", "open", "that", "word" };
+            using (var reader = new StringReader(input))
+            {
+                var tokenSource = new Tokenizer();
+                tokenSource.SetReader(reader);
+                List<string> rrr = tokenSource.ReadAll();
+                foreach(string re in rrr)
+                {
+                    Logger.Info(re);
+                }
+            }
         }
     }
 }
