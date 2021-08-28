@@ -19,9 +19,9 @@ namespace ConsoleAppTester
             /* Console.WriteLine(pdfFilePath);
              string text = PDFParser.Parse(pdfFilePath);
              Console.WriteLine(text);*/
-            string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
-            Console.WriteLine(CaseFolder.CaseFold(word));
-            Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
+            //string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
+            //Console.WriteLine(CaseFolder.CaseFold(word));
+            //Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
           
             //Console.WriteLine(pdfFilePath);
             //string text = PDFParser.Parse(pdfFilePath);
