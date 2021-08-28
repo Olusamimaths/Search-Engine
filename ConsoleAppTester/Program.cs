@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Parsers;
 using Utilities;
+using Indexing;
 
 namespace ConsoleAppTester
 {
@@ -9,17 +11,23 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            //string folderName = AppDomain.CurrentDomain.BaseDirectory;
-            //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+            string folderName = AppDomain.CurrentDomain.BaseDirectory;
+            string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
 
-            /* Console.WriteLine(pdfFilePath);
+             Console.WriteLine(pdfFilePath);
              string text = PDFParser.Parse(pdfFilePath);
-             Console.WriteLine(text);*/
-            string word = "THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL";
-            Console.WriteLine(CaseFolder.CaseFold(word));
-            Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
-          
+             Console.WriteLine(text);
+
+            //    var tokenSource = new Tokenizer();
+            //    tokenSource.SetReader(reader);
+            //    while (tokenSource.Next()) {
+            //        Console.WriteLine(tokenSource.ToString());
+
+            //string word = "THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL...THIS IS CAPITAL";
+            //Console.WriteLine(CaseFolder.CaseFold(word));
+            //Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
+
             //Console.WriteLine(pdfFilePath);
             //string text = PDFParser.Parse(pdfFilePath);
             //Console.WriteLine(text);
@@ -40,17 +48,17 @@ namespace ConsoleAppTester
             //string result = SpreadSheetParser.parse(path);
             //Console.WriteLine(result);
 
-            string input = "job open. that . . . 'word'";
-            var expected = new[] { "job", "open", "that", "word" };
-            using (var reader = new StringReader(input))
-            {
-                var tokenSource = new Tokenizer();
-                tokenSource.SetReader(reader);
-                while (tokenSource.Next()) {
-                    Console.WriteLine(tokenSource.ToString());
-                }
-                //CollectionAssert.AreEqual(expected, result);
-            }
+            //string input = "job open. that . . . 'word'";
+            //var expected = new[] { "job", "open", "that", "word" };
+            //using (var reader = new StringReader(input))
+            //{
+            //    var tokenSource = new Tokenizer();
+            //    tokenSource.SetReader(reader);
+            //    while (tokenSource.Next()) {
+            //        Console.WriteLine(tokenSource.ToString());
+            //    }
+            //    //CollectionAssert.AreEqual(expected, result);
+
         }
     }
 }

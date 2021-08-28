@@ -8,22 +8,25 @@ namespace Indexing
     /// </summary>
     public class InvertedIndex
     {
-        private readonly IDictionary<string, List<int>> _data = new Dictionary<string, List<int>>();
+        //
+        private readonly IDictionary<string, Posting> _data = new SortedDictionary<string, Posting>();
         /// <summary>
         /// Adds a entry to the inverted index data structure
         /// </summary>
         /// <param name="term">String: Term that will be the key of the etry</param>
         /// <param name="documentId">int: Document unique Id</param>
-        internal void Append(string term, int documentId)
+        internal void Append(string term, int documentId, string documentContent)
         {
+            int position = documentContent.IndexOf(term);
+
             if (_data.ContainsKey(term))
             {
-                _data[term].Add(documentId);
+                _data[term].Positions.Add(position);
             }
             else
             {
-                var postings = new List<int>(documentId);
-                _data.Add(term, postings);
+                var posting = new Posting(documentId, position);
+                _data.Add(term, posting);
             }
         }
 
@@ -34,7 +37,17 @@ namespace Indexing
         /// <returns>Int: number of times the term is present</returns>
         public int GetFrequency(string term)
         {
-            return _data[term].Count;
+            return _data[term].Positions.Count;
+        }
+
+        /// <summary>
+        /// Get the posting list for a term
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        public Posting GetPostingsFor(string term)
+        {
+            return _data[term];
         }
     }
 }
