@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using Parsers;
+using SearchEngine;
+using Utilities;
+using Indexing;
 using SearchEngine.src.Uploader;
-using System.Diagnostics;
 
 namespace ConsoleAppTester
 {
@@ -10,8 +12,27 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            //string folderName = AppDomain.CurrentDomain.BaseDirectory;
-            //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+            string folderName = AppDomain.CurrentDomain.BaseDirectory;
+            string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+
+
+             Console.WriteLine(pdfFilePath);
+             string text = PDFParser.Parse(pdfFilePath);
+
+            using (var reader = new StringReader(text))
+            {
+                var tokenSource = new Tokenizer();
+                tokenSource.SetReader(reader);
+                List<string> tokenizedWords = tokenSource.ReadAll();
+                foreach (string re in tokenizedWords)
+                {
+                    Logger.Info(re);
+                }
+            }
+            //string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
+            //Console.WriteLine(CaseFolder.CaseFold(word));
+            //Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
+
 
             //Console.WriteLine(pdfFilePath);
             //string text = PDFParser.Parse(pdfFilePath);
