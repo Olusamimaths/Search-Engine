@@ -125,6 +125,7 @@ namespace IndexingTests
         public void PostingsAreAlwaysSortedByDocumentId()
         {
             InvertedIndex invertedIndex = new InvertedIndex();
+
             invertedIndex.Append("hello", 123, 5);
             invertedIndex.Append("hello", 100, 1);
             invertedIndex.Append("hello", 55, 49);
