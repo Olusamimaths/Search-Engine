@@ -4,8 +4,10 @@ using System.IO;
 using Parsers;
 using Tokenize;
 using Utilities;
+//using Uploader;
 using Indexing;
 using MongoDB.Driver;
+using SearchEngine.src.Uploader;
 
 namespace ConsoleAppTester
 {
@@ -16,8 +18,37 @@ namespace ConsoleAppTester
             //string folderName = AppDomain.CurrentDomain.BaseDirectory;
             //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
+            Uploader.Upload();
+            Logger.Error("Successfully upload documents");
+
+            //Logger.Error("Just trying some stuff");
+            //Logger.Error(Path.GetFileName(@"C:\Users\Public\template1.doc"));
+            //Logger.Error(PathHandler.GetParentBasePath(""));
+
+            //string basePath = PathHandler.GetParentBasePath("");
+            //string newDocsPath = PathHandler.GetParentBasePath("\\newDocs");
+            //string uploadedDocs = PathHandler.GetParentBasePath("\\indexedDocs");
+
+            //string value = @"C:\Users\Public\template1.doc";
+
+            //Console.WriteLine("File Extension: {0}", extn);
+
+            //----------------------------------------------
+
+            //string sourceDir = @"C:\Users\Jano\Documents\";
+            //string backupDir = @"C:\Users\Jano\Documents\backup\";
+
+            //string[] toUpload = Directory.GetFiles(newDocsPath);
+
+            //foreach (string fileToUpload in toUpload)
+            //{
+            //    FileInfo fileInfo = new FileInfo(fileToUpload);
+            //    //Logger.Error(fileInfo.ToString());
+            //    string extn = fileInfo.Extension;
+            //    string fileName = fileToUpload.Substring(newDocsPath.Length);
+            //    Logger.Error("FIle name: " + fileName);
+            //}
             // Console.WriteLine(pdfFilePath);
-            // string text = PDFParser.Parse(pdfFilePath);
 
             //using (var reader = new StringReader(text))
             //{
