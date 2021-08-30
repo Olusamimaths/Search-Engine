@@ -5,6 +5,7 @@ using Parsers;
 using Tokenize;
 using Utilities;
 using Indexing;
+using MongoDB.Driver;
 
 namespace ConsoleAppTester
 {
@@ -55,4 +56,3 @@ namespace ConsoleAppTester
         }
     }
 }
-

@@ -12,6 +12,13 @@ namespace Utilities
             string newPath = Path.GetFullPath(Path.Combine(appdomain, @"..\..\..\"));
             return newPath;
         }
+
+        //Parent directory 
+        public static string GetParentBasePath(string path)
+        {
+            return Directory.GetParent(GetBasePath()).Parent.FullName + "\\SearchEngine\\uploads" + path;
+        }
+
         public static string GetFilePath(string path)
         {
             string basePath = GetBasePath();
