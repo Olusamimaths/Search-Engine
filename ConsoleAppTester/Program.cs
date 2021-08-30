@@ -5,7 +5,9 @@ using Parsers;
 using SearchEngine;
 using Utilities;
 using Indexing;
+using SearchEngine.src.Uploader;
 using MongoDB.Driver;
+
 
 namespace ConsoleAppTester
 {
@@ -17,6 +19,12 @@ namespace ConsoleAppTester
             string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
 
+             Console.WriteLine(pdfFilePath);
+             string text = PDFParser.Parse(pdfFilePath);
+
+            using (var reader = new StringReader(text))
+            {
+              
             // Console.WriteLine(pdfFilePath);
             string text = PDFParser.Parse(pdfFilePath);
 
@@ -62,6 +70,9 @@ namespace ConsoleAppTester
                 List<string> tokenizedWords = tokenSource.ReadAll();
                 foreach (string re in tokenizedWords)
                 {
+                    Logger.Info(re);
+                }
+            }
                     pos += 1;
                     Logger.Info(re);
                     invertedIndex2.Append(re, 1, pos);
@@ -91,6 +102,7 @@ namespace ConsoleAppTester
             //    }
             //}
 
+      
             //string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
             //Console.WriteLine(CaseFolder.CaseFold(word));
             //Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
