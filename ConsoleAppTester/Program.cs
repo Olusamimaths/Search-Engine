@@ -13,26 +13,26 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            //string folderName = AppDomain.CurrentDomain.BaseDirectory;
-            //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+            string folderName = AppDomain.CurrentDomain.BaseDirectory;
+            string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
 
             // Console.WriteLine(pdfFilePath);
-            // string text = PDFParser.Parse(pdfFilePath);
+            string text = PDFParser.Parse(pdfFilePath);
 
 
-            using (var reader = new StringReader(text))
-            {
-                var tokenSource = new Tokenizer();
-                tokenSource.SetReader(reader);
-                List<string> tokenizedWords = tokenSource.ReadAll();
-                foreach (string re in tokenizedWords)
-                {
-                    Logger.Info(re);
-                }
-            }
+            //            using (var reader = new StringReader(text))
+            //            {
+            //                var tokenSource = new Tokenizer();
+            //                tokenSource.SetReader(reader);
+            //                List<string> tokenizedWords = tokenSource.ReadAll();
+            //                foreach (string re in tokenizedWords)
+            //                {
+            //                    Logger.Info(re);
+            //                }
+            //            }
 
-/*
+            ///*
             InvertedIndex invertedIndex = new InvertedIndex();
 
             invertedIndex.Append("hello", 123, 5);
@@ -47,7 +47,7 @@ namespace ConsoleAppTester
 
             Querier.Search("hell", invertedIndex);
             Querier.Search("love", invertedIndex);
-            Querier.Search("once", invertedIndex);*/
+            Querier.Search("once", invertedIndex);
 
 
             Console.WriteLine(pdfFilePath);
