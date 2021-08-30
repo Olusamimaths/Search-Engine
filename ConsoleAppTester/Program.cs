@@ -5,9 +5,7 @@ using Parsers;
 using SearchEngine;
 using Utilities;
 using Indexing;
-using SearchEngine.src.Uploader;
 using MongoDB.Driver;
-
 
 namespace ConsoleAppTester
 {
@@ -19,43 +17,37 @@ namespace ConsoleAppTester
             string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
 
-             Console.WriteLine(pdfFilePath);
-             string text = PDFParser.Parse(pdfFilePath);
-
-            using (var reader = new StringReader(text))
-            {
-              
             // Console.WriteLine(pdfFilePath);
             string text = PDFParser.Parse(pdfFilePath);
 
 
-            //            using (var reader = new StringReader(text))
-            //            {
-            //                var tokenSource = new Tokenizer();
-            //                tokenSource.SetReader(reader);
-            //                List<string> tokenizedWords = tokenSource.ReadAll();
-            //                foreach (string re in tokenizedWords)
-            //                {
-            //                    Logger.Info(re);
-            //                }
-            //            }
+            using (var reader = new StringReader(text))
+            {
+                var tokenSource = new Tokenizer();
+                tokenSource.SetReader(reader);
+                List<string> tokenizedWords = tokenSource.ReadAll();
+                foreach (string re in tokenizedWords)
+                {
+                    Logger.Info(re);
+                }
+            }
 
-            ///*
-            InvertedIndex invertedIndex = new InvertedIndex();
+            /*
+                        InvertedIndex invertedIndex = new InvertedIndex();
 
-            invertedIndex.Append("hello", 123, 5);
-            invertedIndex.Append("hello", 100, 1);
-            invertedIndex.Append("hello", 55, 49);
-            invertedIndex.Append("help", 21, 100);
-            invertedIndex.Append("heo", 123, 100);
-            invertedIndex.Append("llo", 100, 10);
-            invertedIndex.Append("man", 5, 9);
-            invertedIndex.Append("love", 10, 100);
-            invertedIndex.Append("once", 21, 10);
+                        invertedIndex.Append("hello", 123, 5);
+                        invertedIndex.Append("hello", 100, 1);
+                        invertedIndex.Append("hello", 55, 49);
+                        invertedIndex.Append("help", 21, 100);
+                        invertedIndex.Append("heo", 123, 100);
+                        invertedIndex.Append("llo", 100, 10);
+                        invertedIndex.Append("man", 5, 9);
+                        invertedIndex.Append("love", 10, 100);
+                        invertedIndex.Append("once", 21, 10);
 
-            Querier.Search("hell", invertedIndex);
-            Querier.Search("love", invertedIndex);
-            Querier.Search("once", invertedIndex);
+                        Querier.Search("hell", invertedIndex);
+                        Querier.Search("love", invertedIndex);
+                        Querier.Search("once", invertedIndex);*/
 
 
             Console.WriteLine(pdfFilePath);
@@ -70,9 +62,6 @@ namespace ConsoleAppTester
                 List<string> tokenizedWords = tokenSource.ReadAll();
                 foreach (string re in tokenizedWords)
                 {
-                    Logger.Info(re);
-                }
-            }
                     pos += 1;
                     Logger.Info(re);
                     invertedIndex2.Append(re, 1, pos);
@@ -102,7 +91,6 @@ namespace ConsoleAppTester
             //    }
             //}
 
-      
             //string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
             //Console.WriteLine(CaseFolder.CaseFold(word));
             //Console.WriteLine(StopWords.RemoveStopWords(new HashSet<string> { "a", "is", "the" }, word));
@@ -142,4 +130,3 @@ namespace ConsoleAppTester
         }
     }
 }
-
