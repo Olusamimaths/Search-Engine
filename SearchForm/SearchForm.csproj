@@ -124,6 +124,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleAppTester\ConsoleAppTester.csproj">
+      <Project>{c897549a-e0c2-4bf6-af9c-f64909da3960}</Project>
+      <Name>ConsoleAppTester</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SearchEngineTest\SearchEngineTest.csproj">
+      <Project>{91af6fac-64ee-472f-b2a4-826a039d0dd1}</Project>
+      <Name>SearchEngineTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SearchEngine\SearchEngine.csproj">
+      <Project>{17aa2e7f-e905-4402-ada0-9475bb6228c8}</Project>
+      <Name>SearchEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SearchEngine\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\SearchEngine\packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

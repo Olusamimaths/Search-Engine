@@ -2,7 +2,7 @@
 using System.Linq;
 using MongoDB.Driver;
 
-namespace Utilities
+namespace Database
 {
     public class DBConnect
     {
