@@ -104,7 +104,10 @@ namespace Indexing
             {
                 return postings;
             }
-            return null;
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>

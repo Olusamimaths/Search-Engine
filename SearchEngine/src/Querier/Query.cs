@@ -20,33 +20,39 @@ namespace SearchEngine
         }
         public static List<int> Search(string query, InvertedIndex invertedIndex)
         {
-            InvertedIndex words = invertedIndex;
-            List<int> matchedDocs = new List<int>();
-            Console.WriteLine("Here is the InvertedIndex" + invertedIndex.ToString());
-            StringBuilder s = new StringBuilder();
+            List<int> matchedDocs = new();
             using (var reader = new StringReader(query))
             {
                 Stopwatch watch = new Stopwatch();
                 watch.Start();
                 //Get the tokenizer and tokenize the query
-                var tokenSource = new Tokenizer();
+                var tokenSource = new Tokenizer()   ;
                 tokenSource.SetReader(reader);
                 List<string> tokenizedWords = tokenSource.ReadAll();
+                List<List<Posting>> posting_list = new List<List<Posting>>();
                 foreach (string re in tokenizedWords)
                 {
                     Logger.Info(re);
+                    var postList = invertedIndex.GetPostingsFor(re);
+                    posting_list.Add(postList);
+
+                    
+                    //get term
                     //Check every query (term) in the invertedIndex, if they exist, then get the corresponding DocId and Postings 
                     //so you can get the docs in which they exist and their positions in the docs
-                    if (words.GetFrequencyAccrossDocuments(re) != 0) 
+                    /*if (words.GetFrequencyAccrossDocuments(re) != 0) 
                     {
+
                         //Just get the doc ID of the containing document
                         //We're supposed to rank here but later, get something that works first
-                        int docID = words.GetPostingsFor(re).First().DocumentID;
+                        int docID = words.GetPostingsFor(re).DocumentID;
                         matchedDocs.Add(docID);
                         s.Append(docID + "-->");
-                    }
+                    }*/
 
                 }
+                // Get the list, linear merge and then return the merged list
+                matchedDocs = MatchingFunction.Merge(posting_list);
                 watch.Stop();
                 // Get the elapsed time as a TimeSpan value.
                 TimeSpan ts = watch.Elapsed;
@@ -57,9 +63,10 @@ namespace SearchEngine
                 Console.WriteLine($"Search Runtime is -> { ts.TotalMilliseconds} milliseconds");
             }
             
-            Console.WriteLine("Search Runtime is -=-=->>>" + elapsedTime);
-            Console.WriteLine("Documents containing terms are ==>" +s.ToString());
-
+            foreach (var variable in matchedDocs)
+            {
+                Console.WriteLine("DocIDs returned are ==>" + variable.ToString());
+            }
             return matchedDocs;
         }
 
