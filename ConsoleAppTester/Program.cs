@@ -4,8 +4,10 @@ using System.IO;
 using Parsers;
 using SearchEngine;
 using Utilities;
+//using Uploader;
 using Indexing;
 using MongoDB.Driver;
+using SearchEngine.src.Uploader;
 
 namespace ConsoleAppTester
 {
@@ -13,24 +15,52 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            string folderName = AppDomain.CurrentDomain.BaseDirectory;
-            string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+            //string folderName = AppDomain.CurrentDomain.BaseDirectory;
+            //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+            Uploader.Upload();
+            Logger.Error("Successfully upload documents");
 
+            //Logger.Error("Just trying some stuff");
+            //Logger.Error(Path.GetFileName(@"C:\Users\Public\template1.doc"));
+            //Logger.Error(PathHandler.GetParentBasePath(""));
 
+            //string basePath = PathHandler.GetParentBasePath("");
+            //string newDocsPath = PathHandler.GetParentBasePath("\\newDocs");
+            //string uploadedDocs = PathHandler.GetParentBasePath("\\indexedDocs");
+
+            //string value = @"C:\Users\Public\template1.doc";
+
+            //Console.WriteLine("File Extension: {0}", extn);
+
+            //----------------------------------------------
+
+            //string sourceDir = @"C:\Users\Jano\Documents\";
+            //string backupDir = @"C:\Users\Jano\Documents\backup\";
+
+            //string[] toUpload = Directory.GetFiles(newDocsPath);
+
+            //foreach (string fileToUpload in toUpload)
+            //{
+            //    FileInfo fileInfo = new FileInfo(fileToUpload);
+            //    //Logger.Error(fileInfo.ToString());
+            //    string extn = fileInfo.Extension;
+            //    string fileName = fileToUpload.Substring(newDocsPath.Length);
+            //    Logger.Error("FIle name: " + fileName);
+            //}
             // Console.WriteLine(pdfFilePath);
-            string text = PDFParser.Parse(pdfFilePath);
+            //string text = PDFParser.Parse(pdfFilePath);
 
 
-            using (var reader = new StringReader(text))
-            {
-                var tokenSource = new Tokenizer();
-                tokenSource.SetReader(reader);
-                List<string> tokenizedWords = tokenSource.ReadAll();
-                foreach (string re in tokenizedWords)
-                {
-                    Logger.Info(re);
-                }
-            }
+            //using (var reader = new StringReader(text))
+            //{
+            //    var tokenSource = new Tokenizer();
+            //    tokenSource.SetReader(reader);
+            //    List<string> tokenizedWords = tokenSource.ReadAll();
+            //    foreach (string re in tokenizedWords)
+            //    {
+            //        Logger.Info(re);
+            //    }
+            //}
 
             /*
                         InvertedIndex invertedIndex = new InvertedIndex();
@@ -50,32 +80,32 @@ namespace ConsoleAppTester
                         Querier.Search("once", invertedIndex);*/
 
 
-            Console.WriteLine(pdfFilePath);
-            string text2 = PDFParser.Parse(pdfFilePath);
-            InvertedIndex invertedIndex2 = new InvertedIndex();
+            //Console.WriteLine(pdfFilePath);
+            //string text2 = PDFParser.Parse(pdfFilePath);
+            //InvertedIndex invertedIndex2 = new InvertedIndex();
 
-            using (var reader = new StringReader(text))
-            {
-                int pos = 0;
-                var tokenSource = new Tokenizer();
-                tokenSource.SetReader(reader);
-                List<string> tokenizedWords = tokenSource.ReadAll();
-                foreach (string re in tokenizedWords)
-                {
-                    pos += 1;
-                    Logger.Info(re);
-                    invertedIndex2.Append(re, 1, pos);
-                }
-            }
+            //using (var reader = new StringReader(text))
+            //{
+            //    int pos = 0;
+            //    var tokenSource = new Tokenizer();
+            //    tokenSource.SetReader(reader);
+            //    List<string> tokenizedWords = tokenSource.ReadAll();
+            //    foreach (string re in tokenizedWords)
+            //    {
+            //        pos += 1;
+            //        Logger.Info(re);
+            //        invertedIndex2.Append(re, 1, pos);
+            //    }
+            //}
 
-            Console.WriteLine("The number of terms is --->" + invertedIndex2.GetNumberOfTerms());
+            //Console.WriteLine("The number of terms is --->" + invertedIndex2.GetNumberOfTerms());
 
-            Querier.Search("hell is a place of torment", invertedIndex2);
-            Querier.Search("computer science's assignment is tough", invertedIndex2);
-            Querier.Search("search engine by dr. odumuyiwa's long term project", invertedIndex2);
-            Querier.Search("love conquers all things", invertedIndex2);
-            Querier.Search("a function is a method", invertedIndex2);
-            Querier.Search("calculate all in 1 seconds", invertedIndex2);
+            //Querier.Search("hell is a place of torment", invertedIndex2);
+            //Querier.Search("computer science's assignment is tough", invertedIndex2);
+            //Querier.Search("search engine by dr. odumuyiwa's long term project", invertedIndex2);
+            //Querier.Search("love conquers all things", invertedIndex2);
+            //Querier.Search("a function is a method", invertedIndex2);
+            //Querier.Search("calculate all in 1 seconds", invertedIndex2);
 
 
 
@@ -119,13 +149,13 @@ namespace ConsoleAppTester
             var connection = DBConnect.Connect();
             Logger.Info("Database connection established ");
 
-            var dbList = connection.ListDatabases().ToList();
+            //var dbList = connection.ListDatabases().ToList();
 
-            Console.WriteLine("The list of databases on this server is: ");
-            foreach (var db in dbList)
-            {
-                Logger.Info(db.ToString());
-            }
+            //Console.WriteLine("The list of databases on this server is: ");
+            //foreach (var db in dbList)
+            //{
+            //    Logger.Info(db.ToString());
+            //}
 
         }
     }
