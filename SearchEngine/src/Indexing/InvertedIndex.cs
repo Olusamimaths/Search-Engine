@@ -19,7 +19,7 @@ namespace Indexing
         /// <summary>
         /// Adds a entry to the inverted index data structure
         /// </summary>
-        /// <param name="term">String: Term that will be the key of the etry</param>
+        /// <param name="term">String: Term that will be the key of the entry</param>
         /// <param name="documentId">int: Document unique Id</param>
         public void Append(string term, int documentId, long position)
         {
