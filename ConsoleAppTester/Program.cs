@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Parsers;
-using SearchEngine;
+using Tokenize;
 using Utilities;
 using Indexing;
 
@@ -14,7 +14,6 @@ namespace ConsoleAppTester
         {
             string folderName = AppDomain.CurrentDomain.BaseDirectory;
             string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
-
 
              Console.WriteLine(pdfFilePath);
              string text = PDFParser.Parse(pdfFilePath);

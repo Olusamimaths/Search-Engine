@@ -2,7 +2,7 @@
 using System.IO;
 using Tokenize;
 
-namespace SearchEngine
+namespace Tokenize
 {
 	/// <summary>
 	/// Tokenizer class that breaks a string into valid tokens
