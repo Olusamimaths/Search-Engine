@@ -18,8 +18,8 @@ namespace ConsoleAppTester
             //string folderName = AppDomain.CurrentDomain.BaseDirectory;
             //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
-            Uploader.Upload();
-            Logger.Error("Successfully upload documents");
+            //Uploader.Upload();
+            //Logger.Error("Successfully upload documents");
 
             //Logger.Error("Just trying some stuff");
             //Logger.Error(Path.GetFileName(@"C:\Users\Public\template1.doc"));
@@ -62,6 +62,7 @@ namespace ConsoleAppTester
             //}
             InvertedIndex invertedIndex = new InvertedIndex();
             invertedIndex.Append("hello", 123, 5);
+            invertedIndex.Append("hello", 123, 8);
             invertedIndex.Append("hello", 100, 1);
             invertedIndex.Append("hello", 55, 49);
             invertedIndex.Append("help", 21, 100);
@@ -70,6 +71,10 @@ namespace ConsoleAppTester
             invertedIndex.Append("man", 5, 9);
             invertedIndex.Append("love", 10, 100);
             invertedIndex.Append("once", 21, 10);
+
+            Logger.Error("" + invertedIndex.GetFrequencyAccrossDocuments("helledfdo"));
+            Logger.Error("" + invertedIndex.GetFrequencyOfTermInDocument("hello", 123));
+            Logger.Error("" + invertedIndex.GetNumberOfTerms());
 
             //string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
             //Console.WriteLine(CaseFolder.CaseFold(word));
