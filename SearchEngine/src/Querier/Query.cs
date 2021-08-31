@@ -10,7 +10,7 @@ using Tokenize;
 
 namespace SearchEngine
 {
-  
+
     public class Querier
     {
         public static string elapsedTime
