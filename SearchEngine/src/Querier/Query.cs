@@ -10,7 +10,7 @@ using Tokenize;
 
 namespace SearchEngine
 {
-  
+
     public class Querier
     {
         public static string elapsedTime
@@ -37,7 +37,7 @@ namespace SearchEngine
                     Logger.Info(re);
                     //Check every query (term) in the invertedIndex, if they exist, then get the corresponding DocId and Postings 
                     //so you can get the docs in which they exist and their positions in the docs
-                    if (words.GetFrequencyAccrossDocuments(re) != 0) 
+                    if (words.GetFrequencyAccrossDocuments(re) != 0)
                     {
                         //Just get the doc ID of the containing document
                         //We're supposed to rank here but later, get something that works first
@@ -56,9 +56,9 @@ namespace SearchEngine
                 watch.Reset();
                 Console.WriteLine($"Search Runtime is -> { ts.TotalMilliseconds} milliseconds");
             }
-            
+
             Console.WriteLine("Search Runtime is -=-=->>>" + elapsedTime);
-            Console.WriteLine("Documents containing terms are ==>" +s.ToString());
+            Console.WriteLine("Documents containing terms are ==>" + s.ToString());
 
             return matchedDocs;
         }
