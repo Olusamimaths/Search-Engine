@@ -15,7 +15,7 @@ namespace Parsers
         /// </summary>
         /// <param name="filePath">String: File Path to the word document</param>
         /// <returns>Text content of the spreadsheet</returns>
-        public static string parse(string filePath)
+        public static string Parse(string filePath)
         {
             StringBuilder sb = new StringBuilder("");
 

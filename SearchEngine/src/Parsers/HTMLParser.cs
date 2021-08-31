@@ -16,7 +16,7 @@ namespace Parsers
         /// </summary>
         /// <param name="path">String: The file path of the HTML file</param>
         /// <returns>String: The text content of the HTML file</returns>
-        public static string parseHtml(string path)
+        public static string Parse(string path)
         {
 
             string extractedText = "";

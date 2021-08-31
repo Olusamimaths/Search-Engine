@@ -13,7 +13,7 @@ namespace Parsers
         /// </summary>
         /// <param name="path">String: The file path of the ppt file</param>
         /// <returns>String: The text content of the ppt file</returns>
-        public static string parsePPT(string path)
+        public static string Parse(string path)
         {
 
             StringBuilder extractedText = new StringBuilder();
