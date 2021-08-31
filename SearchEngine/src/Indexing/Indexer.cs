@@ -8,23 +8,17 @@ namespace Indexing
 {
     public class Indexer
     {
-        public InvertedIndex CreateIndex(List<Document> documents)
+        private InvertedIndex _invertedIndex; 
+        public Indexer()
         {
-            InvertedIndex invertedIndex = new InvertedIndex();
-
-            foreach(var document in documents)
-            {
-                int documentId = document.Id;
-                string documentText = document.Text;
-
-                using (var reader = new StringReader(documentText)) {
-                    ProcessDocument(invertedIndex, documentText, documentId);
-                }
-            }
-
-            return invertedIndex;
+            _invertedIndex = new InvertedIndex();
         }
-        private void ProcessDocument(InvertedIndex invertedIndex, string document, int documentId)
+        public void IndexDocument(string document, int documentId)
+        {
+            ProcessDocument(document, documentId);
+        }
+
+        private void ProcessDocument(string document, int documentId)
         {
             using (var reader = new StringReader(document))
             {
@@ -44,7 +38,7 @@ namespace Indexing
 
                     foreach(int position in allIndicesOfTermInDocument)
                     {
-                        invertedIndex.Append(term, documentId, position);
+                        _invertedIndex.Append(term, documentId, position);
                     }
                 }
             }
