@@ -5,6 +5,7 @@ using Parsers;
 using Tokenize;
 using Utilities;
 using Indexing;
+using SearchEngine;
 using MongoDB.Driver;
 using Uploader;
 
@@ -19,6 +20,14 @@ namespace ConsoleAppTester
             string docFilePath = Path.Combine(folderName, "..\\..\\..\\testDocx.pdf");
             var text = DocParser.Parse(docFilePath);
             Logger.Info(text);
+
+            List<int> docs = Querier.Search("We have been taugth in computer science how to create a earch engine");
+            Console.WriteLine("Here are the Search results:");
+            foreach (var doc in docs)
+            {
+                Console.WriteLine(doc);
+            }
+
 
             //var text = PDFParser.Parse(pdfFilePath);
             //Indexer indexer = new Indexer();
