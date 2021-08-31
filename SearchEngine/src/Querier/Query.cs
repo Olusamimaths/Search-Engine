@@ -7,6 +7,7 @@ using System.Text;
 using Indexing;
 using Utilities;
 using Tokenize;
+using Database;
 
 namespace SearchEngine
 {

@@ -16,8 +16,16 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            string folderName = AppDomain.CurrentDomain.BaseDirectory;
+            //string folderName = AppDomain.CurrentDomain.BaseDirectory;
             //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+
+            List<int> docs = Querier.Search("We have been taugth in computer science how to create a earch engine");
+            Console.WriteLine("Here are the Search results:");
+            foreach (var doc in docs)
+            {
+                Console.WriteLine(doc);
+            }
+
 
             //var text = PDFParser.Parse(pdfFilePath);
             //Indexer indexer = new Indexer();
