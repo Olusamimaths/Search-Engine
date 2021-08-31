@@ -35,18 +35,15 @@ namespace Indexing
                     postings.Add(new Posting(documentId, position));
                     // sort the posting list by document ID
                     postings.Sort(new PostingComparer());
-
-                    
                 }
                 else
-                // term is already in _data, add the new position
+                // term is already in database for the same document ID, just add the new position
                 {
                     foundPosting.Positions.Add(position);
                     // sort the positions list after insertion
                     foundPosting.Positions.Sort();
                 }
-                DatabaseService.UpdatedInvertedIndexEntryPostings(term, postings);
-
+                DatabaseService.UpdateInvertedIndexEntryPostings(term, postings);
             }
             else
             // no entry for the term yet

@@ -16,12 +16,12 @@ namespace ConsoleAppTester
         static void Main(string[] args)
         {
             string folderName = AppDomain.CurrentDomain.BaseDirectory;
-            string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+            //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
 
-            var text = PDFParser.Parse(pdfFilePath);
-            Indexer indexer = new Indexer();
+            //var text = PDFParser.Parse(pdfFilePath);
+            //Indexer indexer = new Indexer();
 
-            indexer.IndexDocument(text, 122);
+            //indexer.IndexDocument(text, 122);
 
             //Uploader.Upload();
             //Logger.Error("Successfully upload documents");
