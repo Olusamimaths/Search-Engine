@@ -1,8 +1,11 @@
 ﻿using MongoDB.Driver;
 using Indexing;
+using Uploader;
 using MongoDB.Driver.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using System;
 
 namespace Database
 {
@@ -36,7 +39,7 @@ namespace Database
 
         }
         /// <summary>
-        /// Gets the InvertedIndex co
+        /// Gets the InvertedIndex collection
         /// </summary>
         /// <returns></returns>
         public static IMongoCollection<InvertedIndexEntry> GetInvertedIndexCollection()
@@ -98,6 +101,53 @@ namespace Database
         {
             var col = GetInvertedIndexCollection().AsQueryable<InvertedIndexEntry>();
             return await col.CountAsync();
+        }
+
+        /// <summary>
+        /// Gets the DocumentEntry collection
+        /// </summary>
+        
+        public static IMongoCollection<DocumentEntry> GetDocumentCollection()
+        {
+            return GetDatabase().GetCollection<DocumentEntry>("documents");
+        }
+        public static void AddNewDocument(DocumentEntry document)
+        {
+            GetDocumentCollection().InsertOne(document);
+        }
+
+        /// <summary>
+        /// Gets the ID of the last document inserted
+        /// </summary>
+        /// <returns>Int: ID of the last document</returns>
+
+        public static int GetLastDocumentID()
+        {
+            var sort = Builders<DocumentEntry>.Sort.Descending("DocID");
+            int lastDocId;
+            var result = GetDocumentCollection().Find(Builders<DocumentEntry>.Filter.Empty).Sort(sort).FirstOrDefault();
+            if (result == null)
+            {
+                lastDocId = 0;
+            }
+            else {
+                lastDocId = result.DocID;
+            }
+            return lastDocId;
+        }
+
+        /// <summary>
+        /// Gets the document entry with a given ID
+        /// </summary>
+        /// <param name="ID">Int: The DocID of the document</param>
+        // <returns>DocumentEntry: The document with specified ID</returns>
+        public static DocumentEntry GetDocumentByID(int ID)
+        {
+            var col = GetDocumentCollection().AsQueryable<DocumentEntry>();
+            var list = col.Where(doc => doc.DocID == ID).Take(1).Select(doc => new { doc.DocID, doc.Path }).ToList();
+            if (list.Count > 0) return new DocumentEntry { DocID = list[0].DocID, Path = list[0].Path };
+
+            return null;
         }
     }
 }
