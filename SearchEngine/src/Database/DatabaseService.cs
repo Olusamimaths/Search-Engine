@@ -80,7 +80,7 @@ namespace Database
         /// </summary>
         /// <param name="term">The term to update the postings for</param>
         /// <param name="postings">The new posting list</param>
-        public static void UpdatedInvertedIndexEntryPostings(string term, List<Posting> postings)
+        public static void UpdateInvertedIndexEntryPostings(string term, List<Posting> postings)
         {
             var invertedIndexEntry = GetInvertedIndexCollection().AsQueryable().Where(b => b.Term == term).FirstOrDefault();
             if(invertedIndexEntry != null)
