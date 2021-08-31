@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Parsers;
-using SearchEngine;
+using Tokenize;
 using Utilities;
 //using Uploader;
 using Indexing;
@@ -15,10 +15,16 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            //string folderName = AppDomain.CurrentDomain.BaseDirectory;
-            //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
-            Uploader.Upload();
-            Logger.Error("Successfully upload documents");
+            string folderName = AppDomain.CurrentDomain.BaseDirectory;
+            string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+
+            var text = PDFParser.Parse(pdfFilePath);
+            Indexer indexer = new Indexer();
+
+            indexer.IndexDocument(text, 122);
+
+            //Uploader.Upload();
+            //Logger.Error("Successfully upload documents");
 
             //Logger.Error("Just trying some stuff");
             //Logger.Error(Path.GetFileName(@"C:\Users\Public\template1.doc"));
@@ -48,8 +54,6 @@ namespace ConsoleAppTester
             //    Logger.Error("FIle name: " + fileName);
             //}
             // Console.WriteLine(pdfFilePath);
-            //string text = PDFParser.Parse(pdfFilePath);
-
 
             //using (var reader = new StringReader(text))
             //{
@@ -61,65 +65,21 @@ namespace ConsoleAppTester
             //        Logger.Info(re);
             //    }
             //}
+            InvertedIndex invertedIndex = new InvertedIndex();
+            invertedIndex.Append("hello", 111, 5);
+            invertedIndex.Append("hello", 111, 8);
+            invertedIndex.Append("hello", 134, 1);
+            invertedIndex.Append("hello", 4565, 49);
+            invertedIndex.Append("help", 445, 100);
+            invertedIndex.Append("heo", 14, 100);
+            invertedIndex.Append("llo", 10450, 10);
+            invertedIndex.Append("man", 45, 9);
+            invertedIndex.Append("love", 445, 100);
+            invertedIndex.Append("once", 45, 10);
 
-            /*
-                        InvertedIndex invertedIndex = new InvertedIndex();
-
-                        invertedIndex.Append("hello", 123, 5);
-                        invertedIndex.Append("hello", 100, 1);
-                        invertedIndex.Append("hello", 55, 49);
-                        invertedIndex.Append("help", 21, 100);
-                        invertedIndex.Append("heo", 123, 100);
-                        invertedIndex.Append("llo", 100, 10);
-                        invertedIndex.Append("man", 5, 9);
-                        invertedIndex.Append("love", 10, 100);
-                        invertedIndex.Append("once", 21, 10);
-
-                        Querier.Search("hell", invertedIndex);
-                        Querier.Search("love", invertedIndex);
-                        Querier.Search("once", invertedIndex);*/
-
-
-            //Console.WriteLine(pdfFilePath);
-            //string text2 = PDFParser.Parse(pdfFilePath);
-            //InvertedIndex invertedIndex2 = new InvertedIndex();
-
-            //using (var reader = new StringReader(text))
-            //{
-            //    int pos = 0;
-            //    var tokenSource = new Tokenizer();
-            //    tokenSource.SetReader(reader);
-            //    List<string> tokenizedWords = tokenSource.ReadAll();
-            //    foreach (string re in tokenizedWords)
-            //    {
-            //        pos += 1;
-            //        Logger.Info(re);
-            //        invertedIndex2.Append(re, 1, pos);
-            //    }
-            //}
-
-            //Console.WriteLine("The number of terms is --->" + invertedIndex2.GetNumberOfTerms());
-
-            //Querier.Search("hell is a place of torment", invertedIndex2);
-            //Querier.Search("computer science's assignment is tough", invertedIndex2);
-            //Querier.Search("search engine by dr. odumuyiwa's long term project", invertedIndex2);
-            //Querier.Search("love conquers all things", invertedIndex2);
-            //Querier.Search("a function is a method", invertedIndex2);
-            //Querier.Search("calculate all in 1 seconds", invertedIndex2);
-
-
-
-
-            //using (var reader = new StringReader(text))
-            //{
-            //    var tokenSource = new Tokenizer();
-            //    tokenSource.SetReader(reader);
-            //    List<string> tokenizedWords = tokenSource.ReadAll();
-            //    foreach (string re in tokenizedWords)
-            //    {
-            //        Logger.Info(re);
-            //    }
-            //}
+            Logger.Error("" + invertedIndex.GetFrequencyAccrossDocuments("helledfdo"));
+            Logger.Error("" + invertedIndex.GetFrequencyOfTermInDocument("hello", 111));
+            Logger.Error("" + invertedIndex.GetNumberOfTerms());
 
             //string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
             //Console.WriteLine(CaseFolder.CaseFold(word));
@@ -145,18 +105,6 @@ namespace ConsoleAppTester
             //string path = @"C:/Users/Simeon/Desktop/the.xls";
             //string result = SpreadSheetParser.parse(path);
             //Console.WriteLine(result);
-            Logger.Info("Initializing database connection... ");
-            var connection = DBConnect.Connect();
-            Logger.Info("Database connection established ");
-
-            //var dbList = connection.ListDatabases().ToList();
-
-            //Console.WriteLine("The list of databases on this server is: ");
-            //foreach (var db in dbList)
-            //{
-            //    Logger.Info(db.ToString());
-            //}
-
         }
     }
 }
