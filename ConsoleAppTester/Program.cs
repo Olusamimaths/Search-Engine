@@ -16,6 +16,9 @@ namespace ConsoleAppTester
         {
             //string folderName = AppDomain.CurrentDomain.BaseDirectory;
             //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
+            string docFilePath = Path.Combine(folderName, "..\\..\\..\\testDocx.pdf");
+            var text = DocParser.Parse(docFilePath);
+            Logger.Info(text);
 
             //var text = PDFParser.Parse(pdfFilePath);
             //Indexer indexer = new Indexer();
@@ -69,21 +72,21 @@ namespace ConsoleAppTester
             //        Logger.Info(re);
             //    }
             //}
-            InvertedIndex invertedIndex = new InvertedIndex();
-            invertedIndex.Append("hello", 111, 5);
-            invertedIndex.Append("hello", 111, 8);
-            invertedIndex.Append("hello", 134, 1);
-            invertedIndex.Append("hello", 4565, 49);
-            invertedIndex.Append("help", 445, 100);
-            invertedIndex.Append("heo", 14, 100);
-            invertedIndex.Append("llo", 10450, 10);
-            invertedIndex.Append("man", 45, 9);
-            invertedIndex.Append("love", 445, 100);
-            invertedIndex.Append("once", 45, 10);
+            //InvertedIndex invertedIndex = new InvertedIndex();
+            //invertedIndex.Append("hello", 111, 5);
+            //invertedIndex.Append("hello", 111, 8);
+            //invertedIndex.Append("hello", 134, 1);
+            //invertedIndex.Append("hello", 4565, 49);
+            //invertedIndex.Append("help", 445, 100);
+            //invertedIndex.Append("heo", 14, 100);
+            //invertedIndex.Append("llo", 10450, 10);
+            //invertedIndex.Append("man", 45, 9);
+            //invertedIndex.Append("love", 445, 100);
+            //invertedIndex.Append("once", 45, 10);
 
-            Logger.Error("" + invertedIndex.GetFrequencyAccrossDocuments("helledfdo"));
-            Logger.Error("" + invertedIndex.GetFrequencyOfTermInDocument("hello", 111));
-            Logger.Error("" + invertedIndex.GetNumberOfTerms());
+            //Logger.Error("" + invertedIndex.GetFrequencyAccrossDocuments("helledfdo"));
+            //Logger.Error("" + invertedIndex.GetFrequencyOfTermInDocument("hello", 111));
+            //Logger.Error("" + invertedIndex.GetNumberOfTerms());
 
             //string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
             //Console.WriteLine(CaseFolder.CaseFold(word));
