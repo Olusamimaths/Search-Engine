@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
 using Utilities;
 using Tokenize;
 using Parsers;
+using Database;
+using Indexing;
 
-
-namespace SearchEngine.src.Uploader
+namespace Uploader
 {
     public class Uploader
     {
@@ -17,11 +17,14 @@ namespace SearchEngine.src.Uploader
         public static void Upload()
         {
             Tokenizer tokenSource = new Tokenizer();
+            Indexer indexer = new Indexer();
             
             string[] toUpload = Directory.GetFiles(newDocsPath);
 
-            int docID = 1;
-
+            int lastDocID = DatabaseService.GetLastDocumentID();
+            //int lastDocID = 1;
+            Logger.Info("Uploading in progress . . .");
+            Logger.Info("Last document ID: " + lastDocID);
             foreach (string fileToUpload in toUpload)
             {
                 FileInfo fileInfo = new FileInfo(fileToUpload);
@@ -32,27 +35,27 @@ namespace SearchEngine.src.Uploader
 
                 if (File.Exists(destination))
                 {
-                    File.Delete(destination);
+                    Logger.Info("File already exist " + fileName);
+                    continue;
                 }
 
                 File.Move(source, destination, true);
 
-                string extractedText = ParseDocument(extn, fileName);
-                List<string> tokenizedWords;
+                var document = new DocumentEntry { 
+                    DocID = lastDocID + 1,
+                    Path = fileName
+                };
+                DatabaseService.AddNewDocument(document);
+                lastDocID++;
 
-
-                using (var reader = new StringReader(extractedText))
-                {
-                    tokenSource.SetReader(reader);
-                    tokenizedWords = tokenSource.ReadAll();
-                }
+                string extractedText = ParseDocument(extn, destination);
+                indexer.IndexDocument(extractedText, lastDocID + 1);
 
                 if (File.Exists(source))
                 {
                     File.Delete(source);
                 }
 
-                //Increment doID and call indexer with tokenized words and docID
             }
 
         }
@@ -96,9 +99,7 @@ namespace SearchEngine.src.Uploader
                         break;
                 }
             return extractedText;
-                //if
             }
-              //  if (fi.Exists){}
         
     }
 }

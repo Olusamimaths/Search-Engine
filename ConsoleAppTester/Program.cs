@@ -4,10 +4,9 @@ using System.IO;
 using Parsers;
 using Tokenize;
 using Utilities;
-//using Uploader;
 using Indexing;
 using MongoDB.Driver;
-using SearchEngine.src.Uploader;
+using Uploader;
 
 namespace ConsoleAppTester
 {
@@ -15,7 +14,7 @@ namespace ConsoleAppTester
     {
         static void Main(string[] args)
         {
-            string folderName = AppDomain.CurrentDomain.BaseDirectory;
+            //string folderName = AppDomain.CurrentDomain.BaseDirectory;
             //string pdfFilePath = Path.Combine(folderName, "..\\..\\..\\testPdf1.pdf");
             string docFilePath = Path.Combine(folderName, "..\\..\\..\\testDocx.pdf");
             var text = DocParser.Parse(docFilePath);
@@ -26,8 +25,13 @@ namespace ConsoleAppTester
 
             //indexer.IndexDocument(text, 122);
 
-            //Uploader.Upload();
-            //Logger.Error("Successfully upload documents");
+            //Test for getting document by ID
+            DocumentEntry doc = Database.DatabaseService.GetDocumentByID(1);
+            Logger.Error("Here lies the document: " + doc.Path);
+
+
+            Uploader.Uploader.Upload();
+            Logger.Error("Successfully upload documents");
 
             //Logger.Error("Just trying some stuff");
             //Logger.Error(Path.GetFileName(@"C:\Users\Public\template1.doc"));
