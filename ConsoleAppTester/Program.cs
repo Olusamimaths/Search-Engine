@@ -5,6 +5,7 @@ using Parsers;
 using SearchEngine;
 using Utilities;
 using Indexing;
+using SearchEngine;
 using MongoDB.Driver;
 
 namespace ConsoleAppTester

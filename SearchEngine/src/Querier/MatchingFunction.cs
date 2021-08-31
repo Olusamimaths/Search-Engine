@@ -1,4 +1,4 @@
-﻿
+﻿/*
 
 using System;
 using System.Diagnostics;
@@ -21,19 +21,19 @@ namespace SearchEngine
 
             // Create a min heap with k heap nodes. Every
             // heap node has first element of an array
-            List<Tuple<long, Tuple<int, int>>> heap = new();
-            //in is a hack here
+            List<Tuple<int, Tuple<long, int>>> heap = new();
             for (int i = 0; i < posting_list.Count; i++)
             {
+                //Get DocID e.g [3, 1] --> [4, 2]
                 for (int j = 0; j < posting_list[i].Count; j++)
                 {
-                    heap.Add(new Tuple<long, Tuple<int, int>>(posting_list[i][j].Positions[0], new Tuple<int, int>(i, 0)));
+                    heap.Add(new Tuple<int, Tuple<int, int>>(posting_list[i][j].DocumentID, new Tuple<int, int>(, 0)));
                 }
             }
 
             heap.Sort();
 
-            while (heap.Count > 0)
+            while (heap.Count > 0)  
             {
                 Tuple<long, Tuple<int, int>> current = heap[0];
                 heap.RemoveAt(0);
@@ -56,3 +56,4 @@ namespace SearchEngine
  }
 
 
+*/

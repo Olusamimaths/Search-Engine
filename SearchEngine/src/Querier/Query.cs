@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Indexing;
 using Utilities;
+using Tokenize;
+using Database;
 
 namespace SearchEngine
 {
@@ -18,41 +20,46 @@ namespace SearchEngine
             get;
             private set;
         }
-        public static List<int> Search(string query, InvertedIndex invertedIndex)
+        public static List<int> Search(string query)
         {
             List<int> matchedDocs = new();
-            using (var reader = new StringReader(query))
+            using (var reader = new StringReader(query))    
             {
                 Stopwatch watch = new Stopwatch();
                 watch.Start();
                 //Get the tokenizer and tokenize the query
-                var tokenSource = new Tokenizer()   ;
+                var tokenSource = new Tokenizer();
                 tokenSource.SetReader(reader);
                 List<string> tokenizedWords = tokenSource.ReadAll();
-                List<List<Posting>> posting_list = new List<List<Posting>>();
+                List<List<Posting>> posting_list = new();
                 foreach (string re in tokenizedWords)
                 {
-                    Logger.Info(re);
-                    var postList = invertedIndex.GetPostingsFor(re);
-                    posting_list.Add(postList);
-
-                    
-                    //get term
-                    //Check every query (term) in the invertedIndex, if they exist, then get the corresponding DocId and Postings 
-                    //so you can get the docs in which they exist and their positions in the docs
-                    /*if (words.GetFrequencyAccrossDocuments(re) != 0) 
+                    Logger.Info("This is the current term--->" +  re);
+                    if (DatabaseService.GetInvertedIndexEntry(re) != null)
                     {
-
-                        //Just get the doc ID of the containing document
-                        //We're supposed to rank here but later, get something that works first
-                        int docID = words.GetPostingsFor(re).DocumentID;
-                        matchedDocs.Add(docID);
-                        s.Append(docID + "-->");
-                    }*/
-
+                        var postList = DatabaseService.GetInvertedIndexEntry(re).Postings;
+                        posting_list.Add(postList);
+                        for (int i = 0; i < postList.Count; i++)
+                        {
+                            matchedDocs.Add(postList[i].DocumentID);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Terms as this exist in Database");
+                    }
                 }
-                // Get the list, linear merge and then return the merged list
-                matchedDocs = MatchingFunction.Merge(posting_list);
+                /*if (posting_list != null) 
+                {
+                    // Get the list, linear merge and then return the merged list
+                    matchedDocs = MatchingFunction.Merge(posting_list);
+                }
+                else
+                {
+                    Logger.Info("No Documents contains the search query");
+                }*/
+
+               
                 watch.Stop();
                 // Get the elapsed time as a TimeSpan value.
                 TimeSpan ts = watch.Elapsed;
@@ -62,7 +69,7 @@ namespace SearchEngine
                 watch.Reset();
                 Console.WriteLine($"Search Runtime is -> { ts.TotalMilliseconds} milliseconds");
             }
-            
+
             foreach (var variable in matchedDocs)
             {
                 Console.WriteLine("DocIDs returned are ==>" + variable.ToString());
