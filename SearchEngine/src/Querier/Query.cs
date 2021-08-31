@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Indexing;
 using Utilities;
 using Tokenize;
-using Database;
 
 namespace SearchEngine
 {
