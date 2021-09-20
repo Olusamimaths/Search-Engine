@@ -33,7 +33,10 @@ namespace ConsoleAppTester
             //Indexer indexer = new Indexer();
 
             //indexer.IndexDocument(text, 122);
-
+            foreach(String s in Querier.Search("lorem ipsum"))
+            {
+                Console.WriteLine(s);
+            }
             //Test for getting document by ID
             //DocumentEntry doc = Database.DatabaseService.GetDocumentByID(1);
             //Logger.Error("Here lies the document: " + doc.Path);
