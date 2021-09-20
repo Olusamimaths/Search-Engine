@@ -6,7 +6,7 @@ using Parsers;
 using Database;
 using Indexing;
 
-namespace Uploader
+namespace UploaderUtil
 {
     public class Uploader
     {
