@@ -19,6 +19,34 @@ namespace SearchEngine
             get;
             private set;
         }
+
+        private List<List<Posting>> GetListOfPostingsForQuery(string query)
+        {
+            List<List<Posting>> posting_list = new();
+
+            using (var reader = new StringReader(query))
+            {
+                //Get the tokenizer and tokenize the query
+                var tokenSource = new Tokenizer();
+                tokenSource.SetReader(reader);
+                List<string> tokenizedWords = tokenSource.ReadAll();
+
+                foreach (string re in tokenizedWords)
+                {
+                    Logger.Info("This is the current term--->" + re);
+                    if (DatabaseService.GetInvertedIndexEntry(re) != null)
+                    {
+                        var postList = DatabaseService.GetInvertedIndexEntry(re).Postings;
+                        posting_list.Add(postList);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Terms as this exist in Database");
+                    }
+                }
+            }
+            return posting_list;
+        }
         public static List<int> Search(string query)
         {
             List<int> matchedDocs = new();
@@ -26,11 +54,14 @@ namespace SearchEngine
             {
                 Stopwatch watch = new Stopwatch();
                 watch.Start();
+
                 //Get the tokenizer and tokenize the query
                 var tokenSource = new Tokenizer();
                 tokenSource.SetReader(reader);
                 List<string> tokenizedWords = tokenSource.ReadAll();
+
                 List<List<Posting>> posting_list = new();
+
                 foreach (string re in tokenizedWords)
                 {
                     Logger.Info("This is the current term--->" +  re);
@@ -38,6 +69,7 @@ namespace SearchEngine
                     {
                         var postList = DatabaseService.GetInvertedIndexEntry(re).Postings;
                         posting_list.Add(postList);
+
                         for (int i = 0; i < postList.Count; i++)
                         {
                             matchedDocs.Add(postList[i].DocumentID);
@@ -48,16 +80,6 @@ namespace SearchEngine
                         Console.WriteLine("No Terms as this exist in Database");
                     }
                 }
-                /*if (posting_list != null) 
-                {
-                    // Get the list, linear merge and then return the merged list
-                    matchedDocs = MatchingFunction.Merge(posting_list);
-                }
-                else
-                {
-                    Logger.Info("No Documents contains the search query");
-                }*/
-
                
                 watch.Stop();
                 // Get the elapsed time as a TimeSpan value.

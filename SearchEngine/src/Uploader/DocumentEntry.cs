@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 
-namespace Uploader
+namespace UploaderUtil
 {
     public class DocumentEntry
     {
