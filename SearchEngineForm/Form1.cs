@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SearchEngine.src.Uploader;
+using Uploader;
+
 namespace SearchEngineForm
 {
     public partial class Form1 : Form
@@ -29,17 +30,38 @@ namespace SearchEngineForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            String[] car = { "Hello", "Welcome", "showcase" };
+            foreach (var time in car)
+            {
+                richTextBox1.Text  += time + "\n";
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            
 
         }
-        static void Main(string[] args)
+        
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged_1(object sender, EventArgs e)
         {
             
-            Application.Run(new Form1());
         }
     }
    
