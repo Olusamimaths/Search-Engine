@@ -49,6 +49,7 @@ namespace SearchEngine
         }
         public static List<string> Search(string query)
         {
+            Logger.Error("Search initiated . . . with query " + query);
             List<int> matchedDocs = new();
             List<List<Posting>> listOfPostings = GetListOfPostingsForQuery(query);
 
@@ -59,7 +60,9 @@ namespace SearchEngine
                     matchedDocs.Add(posting.DocumentID);
                 }
             }
-            return DatabaseService.GetDocumentsByIDs(matchedDocs);
+            List<string> docList = DatabaseService.GetDocumentsByIDs(matchedDocs);
+            Logger.Error("Works: total no = " + docList.Count);
+            return docList;
         }
 
     }

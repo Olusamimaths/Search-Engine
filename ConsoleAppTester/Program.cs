@@ -41,8 +41,13 @@ namespace ConsoleAppTester
             //DocumentEntry doc = Database.DatabaseService.GetDocumentByID(1);
             //Logger.Error("Here lies the document: " + doc.Path);
 
-            //Uploader.Upload();
-            //Logger.Error("Successfully upload documents");
+            Uploader.Upload();
+            Logger.Error("Successfully upload documents");
+            List<String> results = SearchEngine.SearchNaive.Search("lorem");
+            foreach (var docName in results)
+            {
+                Logger.Error(docName);
+            }
 
             //Logger.Error("Just trying some stuff");
             //Logger.Error(Path.GetFileName(@"C:\Users\Public\template1.doc"));
