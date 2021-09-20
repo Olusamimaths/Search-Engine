@@ -148,5 +148,18 @@ namespace Database
 
             return null;
         }
+        public static List<String> GetDocumentsByIDs(List<int> docIds)
+        {
+            List<String> documents = new List<String>();
+            var col = GetDocumentCollection().AsQueryable<DocumentEntry>();
+            foreach(var docId in docIds)
+                {
+                DocumentEntry doc = GetDocumentByID(docId);
+                if (doc != null) {
+                    documents.Add(doc.Path);
+                }
+            }
+            return documents;
+        }
     }
 }
