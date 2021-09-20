@@ -60,20 +60,29 @@ namespace SearchEngine
             return matchedDocs;
         }
 
-        private static void SearchQueryOfTwoTerms(List<Posting> list1, List<Posting> list2) {
-            List<Posting> list = _TwoMerge(list1, list2);
+        private static List<String> GetDocuments(List<Posting> list)
+        {
             List<int> documentIds = new();
-            foreach(Posting posting in list)
+            foreach (Posting posting in list)
             {
                 documentIds.Add(posting.DocumentID);
             }
 
+            return DatabaseService.GetDocumentsByIDs(documentIds);
+        }
 
+        private static List<String> SearchQueryOfTwoTerms(List<Posting> list1, List<Posting> list2) {
+            List<Posting> list = _TwoMerge(list1, list2);
+            return GetDocuments(list);
 
+        }
+
+        private static List<String> SearchQueryOfATerm(List<Posting> list) {
+            return GetDocuments(list);
         }
         private static List<Posting> _TwoMerge(List<Posting> list1, List<Posting> list2)
         {
-            List<Posting> list = new();
+            Posting[] list = new Posting[list1.Count + list2.Count];
 
             int current1 = 0;   // current index of list1
             int current2 = 0;   // current index of list2
@@ -102,58 +111,23 @@ namespace SearchEngine
                 list[current3++] = list2[current2++];
             }
 
-            return list;
+            return new List<Posting>(list);
         }
 
-        public static List<int> Search(string query)
+        public static List<String> Search(string query)
         {
             List<int> matchedDocs = new();
-            using (var reader = new StringReader(query))    
+            List<List<Posting>> listOfPostings = GetListOfPostingsForQuery(query);
+
+            if(listOfPostings.Count == 1)
             {
-                Stopwatch watch = new Stopwatch();
-                watch.Start();
-
-                //Get the tokenizer and tokenize the query
-                var tokenSource = new Tokenizer();
-                tokenSource.SetReader(reader);
-                List<string> tokenizedWords = tokenSource.ReadAll();
-
-                List<List<Posting>> posting_list = new();
-
-                foreach (string re in tokenizedWords)
-                {
-                    Logger.Info("This is the current term--->" +  re);
-                    if (DatabaseService.GetInvertedIndexEntry(re) != null)
-                    {
-                        var postList = DatabaseService.GetInvertedIndexEntry(re).Postings;
-                        posting_list.Add(postList);
-
-                        for (int i = 0; i < postList.Count; i++)
-                        {
-                            matchedDocs.Add(postList[i].DocumentID);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("No Terms as this exist in Database");
-                    }
-                }
-               
-                watch.Stop();
-                // Get the elapsed time as a TimeSpan value.
-                TimeSpan ts = watch.Elapsed;
-                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
-                    ts.Hours, ts.Minutes, ts.Seconds,
-                    ts.TotalMilliseconds);
-                watch.Reset();
-                Console.WriteLine($"Search Runtime is -> { ts.TotalMilliseconds} milliseconds");
+                return SearchQueryOfATerm(listOfPostings[0]);
             }
-
-            foreach (var variable in matchedDocs)
+            else if(listOfPostings.Count == 2)
             {
-                Console.WriteLine("DocIDs returned are ==>" + variable.ToString());
+                return SearchQueryOfTwoTerms(listOfPostings[0], listOfPostings[1]);
             }
-            return matchedDocs;
+            return null;
         }
 
     }

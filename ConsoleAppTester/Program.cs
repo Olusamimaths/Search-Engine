@@ -33,13 +33,16 @@ namespace ConsoleAppTester
             //Indexer indexer = new Indexer();
 
             //indexer.IndexDocument(text, 122);
-
+            foreach(String s in Querier.Search("odumuyiwa"))
+            {
+                Console.WriteLine(s);
+            }
             //Test for getting document by ID
             //DocumentEntry doc = Database.DatabaseService.GetDocumentByID(1);
             //Logger.Error("Here lies the document: " + doc.Path);
 
-            Uploader.Upload();
-            Logger.Error("Successfully upload documents");
+            //Uploader.Upload();
+            //Logger.Error("Successfully upload documents");
 
             //Logger.Error("Just trying some stuff");
             //Logger.Error(Path.GetFileName(@"C:\Users\Public\template1.doc"));
@@ -80,21 +83,21 @@ namespace ConsoleAppTester
             //        Logger.Info(re);
             //    }
             //}
-            InvertedIndex invertedIndex = new InvertedIndex();
-            invertedIndex.Append("hello", 111, 5);
-            invertedIndex.Append("hello", 111, 8);
-            invertedIndex.Append("hello", 134, 1);
-            invertedIndex.Append("hello", 4565, 49);
-            invertedIndex.Append("help", 445, 100);
-            invertedIndex.Append("heo", 14, 100);
-            invertedIndex.Append("llo", 10450, 10);
-            invertedIndex.Append("man", 45, 9);
-            invertedIndex.Append("love", 445, 100);
-            invertedIndex.Append("once", 45, 10);
+            //InvertedIndex invertedIndex = new InvertedIndex();
+            //invertedIndex.Append("hello", 111, 5);
+            //invertedIndex.Append("hello", 111, 8);
+            //invertedIndex.Append("hello", 134, 1);
+            //invertedIndex.Append("hello", 4565, 49);
+            //invertedIndex.Append("help", 445, 100);
+            //invertedIndex.Append("heo", 14, 100);
+            //invertedIndex.Append("llo", 10450, 10);
+            //invertedIndex.Append("man", 45, 9);
+            //invertedIndex.Append("love", 445, 100);
+            //invertedIndex.Append("once", 45, 10);
 
-            Logger.Error("" + invertedIndex.GetFrequencyAccrossDocuments("helledfdo"));
-            Logger.Error("" + invertedIndex.GetFrequencyOfTermInDocument("hello", 111));
-            Logger.Error("" + invertedIndex.GetNumberOfTerms());
+            //Logger.Error("" + invertedIndex.GetFrequencyAccrossDocuments("helledfdo"));
+            //Logger.Error("" + invertedIndex.GetFrequencyOfTermInDocument("hello", 111));
+            //Logger.Error("" + invertedIndex.GetNumberOfTerms());
 
             //string word = "THIS IS CAPITAL...THIS IS CAPITAL...GOLD IS CAPITAL...THIS IS CAPITAL";
             //Console.WriteLine(CaseFolder.CaseFold(word));
