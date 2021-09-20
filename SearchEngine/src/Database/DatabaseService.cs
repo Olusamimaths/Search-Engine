@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 using Indexing;
-using Uploader;
+using UploaderUtil;
 using MongoDB.Driver.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,7 +23,7 @@ namespace Database
         {
             if(_dbClient == null)
             {
-                _dbClient = new MongoClient("mongodb+srv://pacesetter:pacesetter@cluster0.whodz.mongodb.net/test");
+                _dbClient = new MongoClient("mongodb+srv://pacesetter:pacesetter@cluster0.whodz.mongodb.net/search_engine");
             }
             return _dbClient;
         }
@@ -35,7 +35,7 @@ namespace Database
         public static IMongoDatabase GetDatabase()
         {
             MongoClient mongoClient = Connect();
-            return mongoClient.GetDatabase("test");
+            return mongoClient.GetDatabase("search_engine");
 
         }
         /// <summary>
@@ -120,7 +120,6 @@ namespace Database
         /// Gets the ID of the last document inserted
         /// </summary>
         /// <returns>Int: ID of the last document</returns>
-
         public static int GetLastDocumentID()
         {
             var sort = Builders<DocumentEntry>.Sort.Descending("DocID");
