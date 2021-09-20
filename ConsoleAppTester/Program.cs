@@ -33,7 +33,7 @@ namespace ConsoleAppTester
             //Indexer indexer = new Indexer();
 
             //indexer.IndexDocument(text, 122);
-            foreach(String s in Querier.Search("odumuyiwa"))
+            foreach(String s in Querier.Search("lorem ipsum"))
             {
                 Console.WriteLine(s);
             }
