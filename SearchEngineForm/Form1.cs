@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SearchEngine;
 
 
 namespace SearchEngineForm
@@ -30,17 +31,19 @@ namespace SearchEngineForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String[] car = { "Hello", "Welcome", "showcase" };
-            foreach (var time in car)
+            richTextBox1.Text = "";
+            List<String> results = SearchEngine.SearchNaive.Search(textBox1.Text);
+            if (results.Count == 0) { richTextBox1.Text = "Your query does not match anything..."; }
+            foreach (var docName in results)
             {
-                richTextBox1.Text  += time + "\n";
+                richTextBox1.Text  += docName + "\n";
             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
-
+       
         }
         
 
