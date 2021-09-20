@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SearchEngine.src.Uploader;
+using Uploader;
 
 namespace SearchEngineForm
 {
@@ -46,8 +46,7 @@ namespace SearchEngineForm
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string labelmessage = UploadType.Upload(textBox1.Text);
-            label1.Text = labelmessage;
+
         }
     }
 }
